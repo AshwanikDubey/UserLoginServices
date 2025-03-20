@@ -1,6 +1,7 @@
 package com.example.userservice.controllers;
 
 import com.example.userservice.dtos.SignUpRequestDto;
+import com.example.userservice.dtos.UserResponceDto;
 import com.example.userservice.services.UserService;
 import com.example.userservice.models.User;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,10 +17,10 @@ public class UserController {
         this.userService = userService;
     }
 
-    public signUp(@RequestBody SignUpRequestDto signUpRequestDto){
+    public UserResponceDto signUp(@RequestBody SignUpRequestDto signUpRequestDto){
         User user = userService.signUp(signUpRequestDto.getName(),signUpRequestDto.getEmail(),
                 signUpRequestDto.getPassword());
-
+        return UserResponceDto.fromUser(user);
     }
 
 }
